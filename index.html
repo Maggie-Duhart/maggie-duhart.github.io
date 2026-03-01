@@ -31,28 +31,16 @@
             width: 90%;
             border: 1px solid #eee;
         }
-        .icon {
-            font-size: 55px;
-            margin-bottom: 20px;
-        }
-        h1 { 
-            font-size: 26px;
-            font-weight: 700;
-            margin-bottom: 15px; 
-            color: #111;
-        }
-        p { 
-            line-height: 1.6; 
-            color: var(--text-secondary);
-            font-size: 16px;
-            margin-bottom: 30px;
-        }
+        .icon { font-size: 55px; margin-bottom: 20px; }
+        h1 { font-size: 26px; font-weight: 700; margin-bottom: 15px; color: #111; }
+        p { line-height: 1.6; color: var(--text-secondary); font-size: 16px; margin-bottom: 30px; }
         
-        /* Contenedor del Buscador Real */
+        /* Contenedor del Buscador */
         .search-container {
             position: relative;
             margin-bottom: 30px;
         }
+        /* ESTE ES EL ID QUE DISPARA EL WIDGET */
         #searchWidgetTrigger {
             width: 100%;
             padding: 15px 20px;
@@ -64,11 +52,10 @@
             background-color: #fcfcfc;
             text-align: left;
             outline: none;
-            transition: border-color 0.3s ease;
+            cursor: pointer; /* Para que sepan que se puede cliquear */
         }
-        #searchWidgetTrigger:focus {
-            border-color: var(--primary);
-        }
+        #searchWidgetTrigger:hover { border-color: var(--primary); }
+
         .search-button {
             position: absolute;
             right: 10px;
@@ -80,38 +67,22 @@
             padding: 8px 15px;
             border-radius: 8px;
             font-size: 14px;
-            cursor: pointer;
+            pointer-events: none; /* El clic lo recibe el input de abajo */
         }
 
         .info-box {
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 16px;
-            font-size: 14px;
-            border: 1px solid #eee;
+            padding: 20px; background: #f8f9fa; border-radius: 16px; font-size: 14px; border: 1px solid #eee;
         }
-        .rate {
-            font-size: 18px;
-            font-weight: 700;
-            color: #1e8e3e;
-            display: block;
-            margin-top: 5px;
-        }
-        /* Estilizado del Widget lateral para que no tape todo */
-        gen-search-widget {
-            --gen-search-widget-container-max-height: 80vh;
-        }
+        .rate { font-size: 18px; font-weight: 700; color: #1e8e3e; display: block; margin-top: 5px; }
     </style>
 </head>
 <body>
 
     <script>
         (function() {
-            var password = prompt("Acceso Restringido. Por favor, ingresá la clave para la demo:");
-            if (password === "asesoria2026") {
-                console.log("Acceso concedido.");
-            } else {
-                alert("Clave incorrecta. Redirigiendo...");
+            var password = prompt("Acceso Restringido. Clave de la demo:");
+            if (password !== "asesoria2026") {
+                alert("Clave incorrecta.");
                 window.location.href = "https://www.google.com"; 
             }
         })();
@@ -119,25 +90,23 @@
 
     <div class="card">
         <div class="icon">🏡</div>
-        
         <h1>Asesor Inmobiliario IA</h1>
-        
-        <p>Plataforma de testeo exclusiva para el análisis de propiedades en <b>Belgrano y Núñez</b> mediante Inteligencia Artificial.</p>
+        <p>Análisis de propiedades en <b>Belgrano y Núñez</b> mediante Inteligencia Artificial.</p>
         
         <div class="search-container">
             <gen-search-widget
               configId="fff62396-38e9-43eb-9ce0-4ccdd3261143"
-              location="global">
+              triggerId="searchWidgetTrigger">
             </gen-search-widget>
 
-            <input placeholder="Consultar por barrios o precios..." id="searchWidgetTrigger" />
+            <input placeholder="Consultar por barrios o precios..." id="searchWidgetTrigger" readonly />
             <button class="search-button">Buscar</button>
         </div>
 
         <div class="info-box">
             <span style="color:#666;">Cotización Oficial Aplicada:</span>
             <span class="rate">1 USD = $1406,21</span>
-            <span style="color:#999; font-size:12px;">Actualizado: 1 de Marzo, 2026</span>
+            <span style="color:#999; font-size:11px;">Actualizado: 1 de Marzo, 2026</span>
         </div>
     </div>
 
